@@ -1,7 +1,10 @@
+import styled from 'styled-components';
 import './App.css';
 
+const AppContainer = styled.div``;
+
 function App() {
-  return <div className="App"></div>;
+  <AppContainer></AppContainer>;
 }
 
 export default App;
