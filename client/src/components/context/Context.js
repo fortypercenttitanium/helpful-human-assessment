@@ -5,6 +5,7 @@ function Context({ children }) {
   const [colors, setColors] = useState();
   const [families, setFamilies] = useState();
   const [loading, setLoading] = useState(true);
+  const [inErrorState, setInErrorState] = useState(false);
   const [layout, setLayout] = useState('selector');
   const [filters, setFilters] = useState({ search: '', baseColor: '' });
 
@@ -15,6 +16,7 @@ function Context({ children }) {
 
         const getColors = async () => {
           const response = await fetch(`${baseURL}/colors`, { method: 'GET' });
+          if (!response.ok) return setInErrorState(true);
           const colors = await response.json();
 
           setColors(colors);
@@ -24,6 +26,7 @@ function Context({ children }) {
           const response = await fetch(`${baseURL}/families`, {
             method: 'GET',
           });
+          if (!response.ok) return setInErrorState(true);
           const families = await response.json();
 
           setFamilies(families);
@@ -50,6 +53,7 @@ function Context({ children }) {
         setFilters,
         layout,
         setLayout,
+        inErrorState,
       }}
     >
       {children}
