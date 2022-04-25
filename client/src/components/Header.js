@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.svg';
 import { DataContext } from './context/Context';
 
 const HeaderContainer = styled.div`
@@ -9,16 +9,21 @@ const HeaderContainer = styled.div`
   align-items: center;
   background-color: #363c3c;
   padding: 8px 20px;
+  font-family: Helvetica, sans-serif;
 
   .logo img {
-    height: 50px;
+    height: 36px;
   }
 
   .search input {
     font-size: 1rem;
-    padding: 12px;
+    padding: 8px;
     border-radius: 10px;
     width: 240px;
+
+    @media (max-width: 480px) {
+      width: 180px;
+    }
   }
 `;
 
