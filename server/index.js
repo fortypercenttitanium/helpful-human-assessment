@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 app.use(cors());
 
 app.use('/db', dbRouter);
-app.use('*', res.status(404).send('Route not found'));
+app.use('*', (req, res) => res.status(404).send('Route not found'));
 
 app.listen(PORT, async () => {
   await db();
