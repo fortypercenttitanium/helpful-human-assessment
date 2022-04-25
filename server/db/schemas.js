@@ -5,7 +5,7 @@ module.exports = {
     name: String,
     baseColor: String,
     family: String,
-    _id: String,
+    hex: String,
   }),
   familySchema: new mongoose.Schema({
     name: String,

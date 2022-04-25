@@ -1,4 +1,4 @@
-export default class ColorConverter {
+module.exports = class ColorConverter {
   /**
    *
    * @param {String} hex
@@ -44,7 +44,6 @@ export default class ColorConverter {
    * @returns {String} hex value of decimal number
    */
   decimalToHex(dec) {
-    console.log(dec);
     if (dec > 255 || dec < 0 || typeof dec !== 'number')
       throw new Error('Value must be number between 0 and 255');
 
@@ -102,4 +101,4 @@ export default class ColorConverter {
 
     return this.rgbToHex(rgb);
   }
-}
+};
