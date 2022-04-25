@@ -9,12 +9,15 @@ const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/test';
 
 async function seed() {
   try {
+    console.log('Connecting to db...');
     await mongoose.connect(DB_URL);
+    console.log('Clearing db...');
     mongoose.connection.dropDatabase();
 
     const familyCollection = [];
     const colorCollection = [];
 
+    console.log('Generating colors and families...');
     baseColors.forEach((color) => {
       const family = new Family({
         name: color.hex,
@@ -24,7 +27,7 @@ async function seed() {
       const baseColor = new Color({
         hex: color.hex,
         baseColor: color.base,
-        family: family,
+        family: family._id,
         name: color.name,
       });
 
@@ -35,7 +38,7 @@ async function seed() {
         const newColor = new Color({
           hex: converter.shadeDown(color.hex, 0.2 * i),
           baseColor: color.base,
-          family,
+          family: family._id,
           name: `${color.name}_darker_${i}`,
         });
 
@@ -47,7 +50,7 @@ async function seed() {
         const newColor = new Color({
           hex: converter.shadeUp(color.hex, 0.2 * i),
           baseColor: color.base,
-          family,
+          family: family._id,
           name: `${color.name}_lighter_${i}`,
         });
 
@@ -58,11 +61,13 @@ async function seed() {
       familyCollection.push(family);
     });
 
+    console.log('Saving colors and families to db...');
     await Promise.all([
       await Color.insertMany(colorCollection),
       await Family.insertMany(familyCollection),
     ]);
 
+    console.log('Done!');
     process.exit(0);
   } catch (err) {
     console.error(err);
