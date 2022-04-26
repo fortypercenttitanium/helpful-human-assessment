@@ -68,6 +68,7 @@ function Context({ children }) {
     <DataContext.Provider
       value={{
         filteredColors,
+        colors,
         families,
         loading,
         filters,

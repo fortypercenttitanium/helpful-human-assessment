@@ -33,7 +33,14 @@ function NoColors() {
 }
 
 function SwatchSelector({ selectedPage, swatchesPerPage }) {
-  const { filteredColors } = useContext(DataContext);
+  const { filteredColors, selectedColor, setSelectedColor } =
+    useContext(DataContext);
+
+  function handleClick(color) {
+    if (color === selectedColor) return setSelectedColor(null);
+
+    setSelectedColor(color);
+  }
 
   return (
     <SwatchSelectorContainer>
@@ -44,7 +51,11 @@ function SwatchSelector({ selectedPage, swatchesPerPage }) {
           swatchesPerPage * selectedPage,
         )
         .map((color) => (
-          <Swatch key={color._id} hex={color.hex} />
+          <Swatch
+            onClick={() => handleClick(color)}
+            key={color._id}
+            hex={color.hex}
+          />
         ))}
     </SwatchSelectorContainer>
   );

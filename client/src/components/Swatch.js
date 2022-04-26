@@ -1,10 +1,8 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const SwatchContainer = styled.div`
+export const SwatchContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* border-radius: 10px; */
   width: 220px;
   height: 260px;
   overflow: hidden;
@@ -33,9 +31,9 @@ const SwatchContainer = styled.div`
   }
 `;
 
-function Swatch({ hex }) {
+function Swatch({ hex, onClick: handleClick }) {
   return (
-    <SwatchContainer>
+    <SwatchContainer onClick={handleClick}>
       <div className="top" style={{ backgroundColor: hex }} />
       <div className="bottom">
         <p>{hex}</p>

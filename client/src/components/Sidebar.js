@@ -23,6 +23,10 @@ const SidebarContainer = styled.div`
   width: clamp(180px, 23%, 260px);
   color: #363c3c;
 
+  @media (max-width: 768px) {
+    display: ${(props) => (props.mobileHide ? 'none' : 'flex')};
+  }
+
   .button-container {
     button {
       text-align: center;
@@ -65,9 +69,12 @@ const SidebarContainer = styled.div`
 `;
 
 function Sidebar() {
-  const { filters, setFilters } = useContext(DataContext);
+  const { colors, filters, setFilters, selectedColor, setSelectedColor } =
+    useContext(DataContext);
 
   function handleClickSelection(selection) {
+    setSelectedColor(null);
+
     if (filters.baseColor === selection) {
       return setFilters({
         ...filters,
@@ -81,10 +88,20 @@ function Sidebar() {
     });
   }
 
+  function handleClickRandom() {
+    setFilters({
+      baseColor: '',
+      search: '',
+    });
+    const random = Math.floor(Math.random() * colors.length);
+
+    setSelectedColor(colors[random]);
+  }
+
   return (
-    <SidebarContainer>
+    <SidebarContainer mobileHide={selectedColor}>
       <div className="button-container">
-        <button>Random Color</button>
+        <button onClick={handleClickRandom}>Random Color</button>
       </div>
       <div className="base-color-filters">
         <ul>
