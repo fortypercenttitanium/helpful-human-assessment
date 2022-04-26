@@ -7,6 +7,7 @@ const ShadesContainer = styled.div`
   display: flex;
   overflow-x: auto;
   width: 100%;
+  border: 1px solid #d6d8d8;
 
   .overflow {
     display: flex;
@@ -39,7 +40,7 @@ function SimilarShades({ onClick: handleClick }) {
         {shades.map((shade) => (
           <SmallSwatch
             onClick={() => handleClick(shade)}
-            key={shade.__id}
+            key={shade._id}
             hex={shade.hex}
           />
         ))}

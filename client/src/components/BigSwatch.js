@@ -3,6 +3,7 @@ import { SwatchContainer } from './Swatch';
 
 const BigSwatchContainer = styled(SwatchContainer)`
   width: 100%;
+  height: 440px;
   :hover {
     transform: none;
   }

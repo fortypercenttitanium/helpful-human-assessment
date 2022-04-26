@@ -10,10 +10,8 @@ const DetailViewContainer = styled.div`
   gap: 12px;
   align-items: center;
   justify-content: center;
-  width: clamp(400px, 80%, 600px);
-  padding: 48px 24px 12px;
+  width: clamp(360px, 80%, 600px);
   margin: auto;
-  border: 1px solid #d6d8d8;
 `;
 
 function DetailView() {
