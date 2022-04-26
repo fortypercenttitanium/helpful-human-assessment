@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { DataContext } from '../context/Context';
 import DetailView from '../layouts/DetailView';
-import Loading from '../layouts/Loading';
+import Loading from '../Loading';
 import SelectorView from '../layouts/SelectorView';
 
 function ViewController() {
