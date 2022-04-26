@@ -11,10 +11,10 @@ const SwatchSelectorContainer = styled.div`
   flex: 1;
   overflow-x: auto;
   place-items: center;
-  padding: 48px 24px 0;
+  padding: 48px 24px 12px;
 
   @media (max-width: 500px) {
-    padding: 48px 0 0;
+    padding: 48px 0 12px;
   }
 `;
 
