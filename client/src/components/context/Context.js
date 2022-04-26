@@ -3,10 +3,11 @@ const DataContext = createContext();
 
 function Context({ children }) {
   const [colors, setColors] = useState();
+  const [filteredColors, setFilteredColors] = useState([]);
   const [families, setFamilies] = useState();
   const [loading, setLoading] = useState(true);
   const [inErrorState, setInErrorState] = useState(false);
-  const [layout, setLayout] = useState('selector');
+  const [selectedColor, setSelectedColor] = useState(null);
   const [filters, setFilters] = useState({ search: '', baseColor: '' });
 
   useEffect(() => {
@@ -16,7 +17,6 @@ function Context({ children }) {
 
         const getColors = async () => {
           const response = await fetch(`${baseURL}/colors`, { method: 'GET' });
-          console.log('1', response);
           if (!response.ok) return setInErrorState(true);
           const colors = await response.json();
 
@@ -27,7 +27,6 @@ function Context({ children }) {
           const response = await fetch(`${baseURL}/families`, {
             method: 'GET',
           });
-          console.log('2', response);
           if (!response.ok) return setInErrorState(true);
           const families = await response.json();
 
@@ -45,16 +44,35 @@ function Context({ children }) {
     getData();
   }, []);
 
+  useEffect(() => {
+    if (!colors?.length) return;
+    let colorsCopy = [...colors];
+
+    if (filters.baseColor) {
+      colorsCopy = colorsCopy.filter(
+        (color) => color.baseColor === filters.baseColor,
+      );
+    }
+
+    if (filters.search) {
+      colorsCopy = colorsCopy.filter((color) =>
+        color.name.toLowerCase().includes(filters.search.toLowerCase()),
+      );
+    }
+
+    setFilteredColors(colorsCopy);
+  }, [filters, colors, setFilteredColors]);
+
   return (
     <DataContext.Provider
       value={{
-        colors,
+        filteredColors,
         families,
         loading,
         filters,
         setFilters,
-        layout,
-        setLayout,
+        selectedColor,
+        setSelectedColor,
         inErrorState,
       }}
     >

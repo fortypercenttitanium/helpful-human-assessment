@@ -18,24 +18,28 @@ const SidebarContainer = styled.div`
   flex-direction: column;
   border: 1px solid #adadad;
   background-color: #d6d8d8;
-  padding: 48px 24px;
+  padding: 48px 20px;
   gap: 16px;
-  width: clamp(200px, 20%, 240px);
+  width: clamp(180px, 23%, 260px);
   color: #363c3c;
 
-  .button-container button {
-    text-align: center;
-    font-weight: bold;
-    padding: 6px 16px;
-    border-radius: 6px;
-    box-shadow: none;
-    border: 1px solid grey;
-    background-color: white;
-    cursor: pointer;
-    transition: 0.3s;
+  .button-container {
+    button {
+      text-align: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+      padding: 6px 8px;
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: none;
+      border: 1px solid grey;
+      background-color: white;
+      cursor: pointer;
+      transition: 0.3s;
 
-    :hover {
-      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      :hover {
+        box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+      }
     }
   }
 
@@ -71,7 +75,7 @@ function Sidebar() {
       <div className="base-color-filters">
         <ul>
           {baseColorSelections.map((selection) => (
-            <li>
+            <li key={selection}>
               <button className="base-color-selector">{selection}</button>
             </li>
           ))}

@@ -5,17 +5,12 @@ import Loading from '../layouts/Loading';
 import SelectorView from '../layouts/SelectorView';
 
 function ViewController() {
-  const { layout, loading, inErrorState } = useContext(DataContext);
+  const { selectedColor, loading, inErrorState } = useContext(DataContext);
 
   if (inErrorState) return <div>Error!</div>;
   if (loading) return <Loading />;
 
-  switch (layout) {
-    case 'detail':
-      return <DetailView />;
-    default:
-      return <SelectorView />;
-  }
+  return selectedColor ? <DetailView /> : <SelectorView />;
 }
 
 export default ViewController;

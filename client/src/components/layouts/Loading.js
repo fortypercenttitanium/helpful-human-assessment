@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
   @keyframes ldio-g4cc96e736f {
     0% {
       opacity: 1;
