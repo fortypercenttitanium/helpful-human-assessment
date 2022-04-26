@@ -16,13 +16,28 @@ const SwatchSelectorContainer = styled.div`
   @media (max-width: 500px) {
     padding: 48px 0 12px;
   }
+
+  .not-found {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;
+
+function NoColors() {
+  return (
+    <div className="not-found">
+      <h1>No colors found, please adjust your search or sidebar filters.</h1>
+    </div>
+  );
+}
 
 function SwatchSelector({ selectedPage, swatchesPerPage }) {
   const { filteredColors } = useContext(DataContext);
 
   return (
     <SwatchSelectorContainer>
+      {!filteredColors.length && <NoColors />}
       {filteredColors
         .slice(
           (selectedPage - 1) * swatchesPerPage,

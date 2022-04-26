@@ -25,7 +25,7 @@ async function seed() {
       });
 
       const baseColor = new Color({
-        hex: color.hex,
+        hex: color.hex.toLowerCase(),
         baseColor: color.base,
         family: family._id,
         name: color.name,

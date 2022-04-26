@@ -50,7 +50,8 @@ function Context({ children }) {
 
     if (filters.baseColor) {
       colorsCopy = colorsCopy.filter(
-        (color) => color.baseColor === filters.baseColor,
+        (color) =>
+          color.baseColor.toLowerCase() === filters.baseColor.toLowerCase(),
       );
     }
 

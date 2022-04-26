@@ -67,6 +67,20 @@ const SidebarContainer = styled.div`
 function Sidebar() {
   const { filters, setFilters } = useContext(DataContext);
 
+  function handleClickSelection(selection) {
+    if (filters.baseColor === selection) {
+      return setFilters({
+        ...filters,
+        baseColor: '',
+      });
+    }
+
+    return setFilters({
+      ...filters,
+      baseColor: selection,
+    });
+  }
+
   return (
     <SidebarContainer>
       <div className="button-container">
@@ -76,7 +90,16 @@ function Sidebar() {
         <ul>
           {baseColorSelections.map((selection) => (
             <li key={selection}>
-              <button className="base-color-selector">{selection}</button>
+              <button
+                onClick={() => handleClickSelection(selection)}
+                className="base-color-selector"
+                style={{
+                  fontWeight:
+                    filters.baseColor === selection ? 'bold' : 'normal',
+                }}
+              >
+                {selection}
+              </button>
             </li>
           ))}
         </ul>
