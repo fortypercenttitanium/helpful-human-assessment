@@ -13,6 +13,10 @@ app.use('/db', dbRouter);
 app.use('*', (req, res) => res.status(404).send('Route not found'));
 
 app.listen(PORT, async () => {
-  await db();
-  console.log(`Server running on port ${PORT}...`);
+  try {
+    await db();
+    console.log(`Server running on port ${PORT}...`);
+  } catch (err) {
+    console.error(err);
+  }
 });

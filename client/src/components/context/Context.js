@@ -16,6 +16,7 @@ function Context({ children }) {
 
         const getColors = async () => {
           const response = await fetch(`${baseURL}/colors`, { method: 'GET' });
+          console.log('1', response);
           if (!response.ok) return setInErrorState(true);
           const colors = await response.json();
 
@@ -26,6 +27,7 @@ function Context({ children }) {
           const response = await fetch(`${baseURL}/families`, {
             method: 'GET',
           });
+          console.log('2', response);
           if (!response.ok) return setInErrorState(true);
           const families = await response.json();
 
