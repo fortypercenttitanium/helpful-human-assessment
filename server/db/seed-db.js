@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 const { Color, Family } = require('./model');
 const baseColors = require('./baseColors');
 const ColorConverter = require('../helpers/ColorConverter');
@@ -9,8 +10,9 @@ const DB_URL = process.env.DB_URL || 'mongodb://localhost:27017/test';
 
 async function seed() {
   try {
-    console.log('Connecting to db...');
+    console.log(`Attempting to connect to db at ${DB_URL}`);
     await mongoose.connect(DB_URL);
+    console.log('Db connected!');
     console.log('Clearing db...');
     mongoose.connection.dropDatabase();
 

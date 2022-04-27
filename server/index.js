@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 
+app.get('/', (req, res) => res.sendStatus(200));
 app.use('/db', dbRouter);
 app.use('*', (req, res) => res.status(404).send('Route not found'));
 
