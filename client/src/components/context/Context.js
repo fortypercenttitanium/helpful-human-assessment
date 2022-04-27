@@ -13,10 +13,12 @@ function Context({ children }) {
   useEffect(() => {
     async function getData() {
       try {
-        const baseURL = process.env.REACT_APP_DB_URL || '/db';
+        const baseURL = process.env.REACT_APP_DB_URL || '/';
 
         const getColors = async () => {
-          const response = await fetch(`${baseURL}/colors`, { method: 'GET' });
+          const response = await fetch(`${baseURL}db/colors`, {
+            method: 'GET',
+          });
           if (!response.ok) return setInErrorState(true);
           const colors = await response.json();
 
@@ -24,7 +26,7 @@ function Context({ children }) {
         };
 
         const getFamilies = async () => {
-          const response = await fetch(`${baseURL}/families`, {
+          const response = await fetch(`${baseURL}db/families`, {
             method: 'GET',
           });
           if (!response.ok) return setInErrorState(true);
