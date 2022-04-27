@@ -11,6 +11,7 @@ function Context({ children }) {
   const [filters, setFilters] = useState({ search: '', baseColor: '' });
 
   useEffect(() => {
+    // Fetch data and switch loading indicator off
     async function getData() {
       try {
         const baseURL = process.env.REACT_APP_DB_URL || '/';
@@ -47,6 +48,7 @@ function Context({ children }) {
   }, []);
 
   useEffect(() => {
+    // Apply filters as they change
     if (!colors?.length) return;
     let colorsCopy = [...colors];
 

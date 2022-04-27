@@ -7,6 +7,10 @@ const BigSwatchContainer = styled(SwatchContainer)`
   :hover {
     transform: none;
   }
+
+  @media (max-width: 500px) {
+    height: 380px;
+  }
 `;
 
 function BigSwatch({ hex, onClick: handleClick }) {

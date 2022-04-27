@@ -5,6 +5,7 @@ import Loading from '../Loading';
 import ErrorState from '../ErrorState';
 import SelectorView from '../layouts/SelectorView';
 
+// Render the main part of the view window
 function ViewController() {
   const { selectedColor, loading, inErrorState } = useContext(DataContext);
 
