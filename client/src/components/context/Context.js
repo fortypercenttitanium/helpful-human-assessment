@@ -18,9 +18,6 @@ function Context({ children }) {
         const getColors = async () => {
           const response = await fetch(`${baseURL}db/colors`, {
             method: 'GET',
-            headers: {
-              'Content-Security-Policy': 'upgrade-insecure-requests',
-            },
           });
           if (!response.ok) return setInErrorState(true);
           const colors = await response.json();
@@ -31,9 +28,6 @@ function Context({ children }) {
         const getFamilies = async () => {
           const response = await fetch(`${baseURL}db/families`, {
             method: 'GET',
-            headers: {
-              'Content-Security-Policy': 'upgrade-insecure-requests',
-            },
           });
           if (!response.ok) return setInErrorState(true);
           const families = await response.json();
