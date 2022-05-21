@@ -14,7 +14,7 @@ async function seed() {
     await mongoose.connect(DB_URL);
     console.log('Db connected!');
     console.log('Clearing db...');
-    mongoose.connection.dropDatabase();
+    await mongoose.connection.dropDatabase();
 
     const familyCollection = [];
     const colorCollection = [];
